@@ -7,7 +7,10 @@ SRC = so_long.c\
 	parsing_map.c\
 	get_next_line.c\
 	get_next_line_utils.c\
+	get_line_mapping.c\
+	checking_map.c\
 	
+
 
 
 

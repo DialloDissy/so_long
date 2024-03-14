@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_map.c                                      :+:      :+:    :+:   */
+/*   for_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 17:11:46 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/03/13 15:25:32 by sidiallo         ###   ########.fr       */
+/*   Created: 2024/03/13 16:47:08 by sidiallo          #+#    #+#             */
+/*   Updated: 2024/03/13 16:50:47 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long"
 
-
-
-
-
-
-// int ft_pars_map(char *av)
-// {
-    
-//     check_content
-
-//     check_rectangle
-
-//     check_close
-
-//     flood_fill
-// }
+void	ft_for_str(char **strf, int i)
+{
+	while (i >= 0)
+	{
+		if (strf[i])
+			free(strf[i]);
+		i--;
+	}
+	free(strf);
+}

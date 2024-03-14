@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 10:43:18 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/03/12 18:44:08 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/03/13 12:15:13 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*read_line(int fd, char *save)
 	if (!buff)
 		return (NULL);
 	read_bytes = 1;
-	while (!ft_strchr(save, '\n') && read_bytes != 0)
+	while (!ft_strchr_gnl(save, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 		if (read_bytes == -1)
@@ -63,7 +63,7 @@ char	*read_line(int fd, char *save)
 			return (NULL);
 		}
 		buff[read_bytes] = '\0';
-		save = ft_strjoin(save, buff);
+		save = ft_strjoin_gnl(save, buff);
 	}
 	free(buff);
 	return (save);
@@ -83,7 +83,7 @@ char	*misssave(char *save)
 		free(save);
 		return (NULL);
 	}
-	s = (char *)malloc(sizeof(char) * (ft_strlen(save) - i + 1));
+	s = (char *)malloc(sizeof(char) * (ft_strlen_gnl(save) - i + 1));
 	if (!s)
 		return (NULL);
 	i++;
