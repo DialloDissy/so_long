@@ -93,7 +93,8 @@ int check_close(t_game *mapping)
         last_str = ft_strlen(mapping->map[j]);
         if(mapping->map[j][0] != '1')
             return(0);
-        if()
+        if(mapping->map[j][last_str - 1] != '1')
+            return(0);
         i++;
         j++;
     }

@@ -9,6 +9,7 @@ SRC = so_long.c\
 	get_next_line_utils.c\
 	get_line_mapping.c\
 	checking_map.c\
+	checking_flood_fill.c\
 	
 
 
