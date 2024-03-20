@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 17:37:38 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/03/14 14:27:40 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:10:32 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,25 @@
 
 
 
-void check_count(t_game *mapping,char *map)
+void check_count(t_game *mapping,char *map, char i)
 {
-    int i;
     
-    i = 0;
-    while(map[i])
+    int j;
+    j = 0;
+    while(map[j])
     {
-        if( map[i] == 'P')
+        if( map[j] == 'P')
+        {
+            mapping->pos_x = j;
+            mapping->pos_y = i;
             mapping->count_p++;
-        if( map[i] == 'E')
+        }
+            
+        if( map[j] == 'E')
             mapping->count_e++;
-        if( map[i] == 'C')
+        if( map[j] == 'C')
             mapping->count_c++;
-        i++;      
+        j++;      
     }   
 }
 
@@ -37,7 +42,7 @@ int check_content(t_game *mapping)
     i = 0;
     while(mapping->map[i])
     {
-        check_count(mapping, mapping->map[i]);
+        check_count(mapping, mapping->map[i],i);
         i++;
     }
     if(mapping->count_c == 1 && mapping->count_e == 1 & mapping->count_p == 1)
@@ -66,6 +71,7 @@ int check_rectangle(t_game *mapping)
         mapping->map_length = 0 ;
         i++;
     }
+    mapping->map_length = ft_strlen(&mapping->map[0][0]);
     return(1);
     
 }
@@ -105,21 +111,40 @@ int check_close(t_game *mapping)
 int check_map(t_game *mapping)
 {
     if(!(check_content(mapping)))
+    {
         printf("\nprobleme de content\n");
+        // ft_exit_fail(mapping, mapping->map, "\nproblem content\n");
+        return(0);
+    }
     else 
         printf("\nnice check content\n");
     
     if(!(check_rectangle(mapping)))
+    {
         printf("probleme de rectangle\n");
+        // ft_exit_fail(mapping, mapping->map, "problem rectangle\n");
+        return(0);
+    }
     else
         printf("nice check rectangle\n");
     
     if(!(check_close(mapping)))
+    {
         printf("probleme de map close\n");
+        // ft_exit_fail(mapping, mapping->map, "problem to closet\n");
+        return(0);
+    }
     else
         printf("nice check close\n");
     
-    // if(!(check_flood_fill(mapping))) 
+    if(!(check_flood_fill(mapping)))
+    {
+        printf("probleme de flood fill\n");
+        // ft_exit_fail(mapping, mapping->map, "problem fill\n");
+        return(0);
+    }
+    else(printf("\ncarrer le flood fill\n"));
+    
 
     return(1);
     
